@@ -1,0 +1,43 @@
+**ALSO SHOULD BE MIRRORED IN SERVICE**
+
+--Users:                          --DONE--
+    + Register/login                Y / Y
+    + Get current (check session)   Y
+    + Update info                   Y
+    + Register as host              Y
+    + Logout                        Y
+
+--Conversations:
+    + Create-->as host or guest
+    + Show
+    + Delete
+
+--Listings:
+    + Create-->only as host         Y
+    + Show all
+    + Find one
+    + Find all user
+    + Find recent (max 4)
+    + Search
+    + Update
+    + Delete 
+
+--Locations:
+    + Create-->only as host                             Y
+    + Find last created (for listing creation purposes) Y
+    + Search
+    + Find listings by location
+
+--Reservations:
+    + Book (as guest)
+    + Approve (as host)
+    + Show all
+    + Find one
+    + Find by listing
+    + Find by user (guest)
+    + Cancel (delete)
+
+--Reviews:
+    + Create
+    + Find by listing
+    + Find by user

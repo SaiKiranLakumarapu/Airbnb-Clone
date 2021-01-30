@@ -1,0 +1,246 @@
+<!-- <a [routerLink]="['/listings']">Listings</a> -->
+<!-- <a [routerLink]="['/profile']">Public profile</a> -->
+<!-- <a [routerLink]="['/account', currentUser._id]">Your account</a> -->
+<!-- <a [routerLink]="['/oneListing']">Individual listing</a> -->
+
+
+
+<!-- Reg modal -->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><img id="reg-close" src="assets/icons8-delete-50.png"></span>
+                </button>
+            </div>
+            <div id="regContainer" class="container container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-3 mx-auto">
+                        <div class="panel panel-login p-3">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="register-form" #regForm="ngForm" (submit)="validateReg()" role="form" style="display: block;">
+                                            <div class="form-group">
+                                                <input class="form-control" type="email" 
+                                                name="email" 
+                                                required 
+                                                minlength="2" 
+                                                [(ngModel)]="user.email" 
+                                                #email="ngModel" 
+                                                placeholder="Email address">
+                                                <span class="text-info" *ngIf='!email.valid && email.touched'>Email is required and must be at least 2 characters</span>
+                                                <span class="text-info" *ngIf='regEmailError'>{{ regEmailError }}</span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" 
+                                                name="firstName" 
+                                                required 
+                                                minlength="2" 
+                                                [(ngModel)]="user.firstName" 
+                                                #firstName="ngModel"
+                                                placeholder="First name">
+                                                <span class="text-info" *ngIf='!firstName.valid && firstName.touched'>First name is required and must be at least 2 characters</span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" 
+                                                name="lastName" 
+                                                required 
+                                                minlength="2" 
+                                                [(ngModel)]="user.lastName" 
+                                                #lastName="ngModel"
+                                                placeholder="Last name">
+                                                <span class="text-info" *ngIf='!lastName.valid && lastName.touched'>Last name is required and must be at least 2 characters</span>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <input class="form-control" type="password" 
+                                                name="password" 
+                                                required 
+                                                minlength="8" 
+                                                [(ngModel)]="user.password" 
+                                                #password="ngModel"
+                                                placeholder="Create a password">
+                                                <span class="text-info" *ngIf='!password.valid && password.touched'>Password is required and must be at least 8 characters</span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" type="password" 
+                                                name="confirmPassword" 
+                                                required 
+                                                [(ngModel)]="user.confirmPassword"
+                                                #confirmPassword="ngModel" placeholder="Verify password">
+                                                <span class="text-info" *ngIf='!confirmPassword.valid && confirmPassword.touched'>You must verify your password</span>
+                                                <span class="text-info" *ngIf='user.confirmPassword !== user.password'>Passwords must match</span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div>
+                                                    <input class="form-control" type="submit" name="register-submit" id="register-submit" tabindex="8" class="form-control btn btn-register"
+                                                        [disabled]="!regForm.valid" value="Sign Up">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Log modal -->
+<div class="modal fade" id="thisModal" role="dialog" aria-labelledby="thisModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Log in to continue</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><img id="log-close" src="assets/icons8-delete-50.png"></span>
+                </button>
+            </div>
+            <div id="logContainer" class="container container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-3 mx-auto">
+                        <div class="panel panel-login p-3">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="login-form" #logForm="ngForm" (submit)="validateLogin()" role="form" style="display: block;">
+                                            <div class="form-group">
+                                                <input class="form-control" type="email" 
+                                                name="email" 
+                                                required 
+                                                [(ngModel)]="logUser.email" 
+                                                #logEmail="ngModel" 
+                                                placeholder="Email address">
+                                                <span *ngIf="emailError">{{ emailError }}</span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" type="password" 
+                                                name="password" 
+                                                required 
+                                                [(ngModel)]="logUser.password" 
+                                                #logPassword="ngModel"
+                                                placeholder="Password">
+                                                <span *ngIf="passError">{{ passError }}</span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div>
+                                                    <input type="submit" name="login-submit" id="login-submit" tabindex="8" class="form-control btn btn-register"
+                                                        value="Log In">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <a data-toggle="modal" href="#myModal">Don't have an account? Sign Up!</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-toggleable navbar-light">    
+        <div class="justify-content-between collapse navbar-collapse">
+            <div class="row">
+                <div id="header-img-div" class="col my-auto">
+                    <a class="navbar-brand" href="#">
+                        <img class="img-fluid" id="header-logo" alt="Brand" src="assets/airbnbLogo.png">
+                    </a>
+                </div>
+                <div class="col my-auto" id="nav-form-search">
+                    <form id="top-search-form" class="align-middle form-inline">
+                        <div class="form-row">
+                            <input id="search-field" type="text" class="form-control" name="home-search" placeholder="Try 'San Francisco'">
+                            <button id="home-landing-search" class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="button" id="log-reg-button" class="ml-2 btn btn-rounded btn-outline-primary" data-toggle="modal" data-target="#myModal">Sign up</button>
+                <button type="button" id="log-reg-button" class="ml-2 btn btn-rounded btn-outline-primary" data-toggle="modal" data-target="#thisModal">Login</button>
+            </div>
+        </div>
+    </nav>
+    <hr>
+    
+    <div id="recent-listings-container">
+        <div id="cards1">
+            <h2>Explore Airbnb</h2>
+            <div class="card" *ngFor='let listing of recentListings' name='tolist'>
+                <img class="card-img-top" src="{{ listing.image }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">
+                        <a [routerLink]="['/listings', listing._id]">{{listing.title}}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="cards2">
+            <h2>Things to do</h2>
+            <div class="card">
+                <img class="card-img-top" src="https://media-cdn.tripadvisor.com/media/photo-s/0f/7a/d5/99/snow-fun-excursion.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="http://toyokeizai.net/mwimgs/2/4/1280/img_2439a8445d7b4f80a4e0b873132441743763039.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="http://blog.columbia.com/wp-content/uploads/2016/08/Underwater-Scuba-diver-explore-and-enjoy-Coral-reef-Sea-life.jpg"
+                alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="https://www.lafilm.edu/wp-content/uploads/2017/08/Dance-Show.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text.</p>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div id="overlay">
+        <footer id="footer" class="bg-light text-black mt-4">
+            <div class="container-fluid py-4">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="#/about">About Us</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#/careers">Careers</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#/policies">Policies</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#/help">Help</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

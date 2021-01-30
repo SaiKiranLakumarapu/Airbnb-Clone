@@ -1,0 +1,64 @@
+#profile-button {
+    border-radius: 4px;
+}
+
+#inside-nav {
+    padding: 0;
+    font-size: 16px;
+}
+
+#inside-nav li{
+    /* padding: 0.5rem; */
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+#inside-nav li:hover{
+    color: var(--secondary);
+}
+
+#inside-nav li a:visited { 
+    color: black;
+}
+
+.inner-nav {
+    border: none;
+    font-size: 14px;
+}
+
+/* #top-search {
+    display: inline-block;
+    vertical-align: bottom;
+    margin: 15px;
+} */
+
+#search-submit {
+    color: white;
+    background-color: white;
+    border: none;
+}
+
+#nav-button-first{
+    margin-left: 190px;
+}
+
+#inner-nav {
+    display: inline-block;
+    vertical-align: top;
+}
+
+hr {
+    margin: 0rem 0rem 2rem 0rem;
+}
+
+::-webkit-input-placeholder {
+    font-size: 14px!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    font-size: 14px!important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 14px!important;
+}

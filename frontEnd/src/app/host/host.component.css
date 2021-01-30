@@ -1,0 +1,47 @@
+#host-top-nav {
+    font-size: 16px;
+}
+
+#loc-card {
+    border-radius: 0;
+}
+
+.card-header {
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+#location-submit {
+    background-color: var(--coral);
+    border-radius: 5px;
+    color: white;
+    border-color: var(--coral);
+}
+
+#loc-form select {
+    /* border-radius: 0; */
+    font-size: 14px;
+}
+
+#location-submit:hover {
+    color: #fff;
+    background-color: var(--coral);
+    border-color: var(--coral);
+}
+
+#loc-form {
+    margin: 1rem;
+    /* padding: 1rem; */
+}
+
+#loc-form input, #loc-form select {
+    border-radius: 0;
+    /* padding: 1rem; */
+    /* margin: 1rem; */
+}
+
+#loc-form label {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}

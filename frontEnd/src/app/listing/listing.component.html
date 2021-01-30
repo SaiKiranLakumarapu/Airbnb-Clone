@@ -1,0 +1,54 @@
+<div id="nav-container" class="container-fluid">
+  <nav id="listings-nav" class="navbar navbar-toggleable navbar-light">    
+    <div class="justify-content-between collapse navbar-collapse">
+        <div class="row">
+          <div id="header-img-div" class="col my-auto">
+            <a class="navbar-brand" href="#">
+                <img class="img-fluid" id="header-logo" alt="Brand" src="assets/airbnbLogo.png">
+            </a>
+          </div>
+          <div class="col my-auto" id="nav-form-search">
+            <form id="top-search-form" class="align-middle form-inline">
+              <div class="form-row">
+                  <input id="search-field" type="text" class="form-control" name="home-search" placeholder="Search">
+                  <button id="listing-search" class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      <div class="col-3">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" [routerLink]="['/account', currentUser._id]">{{ currentUser.firstName }}'s Account</a>
+          <a class="nav-item nav-link" [routerLink]="['/listings']">Listings</a>
+          <a class="nav-item nav-link" [routerLink]="" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<hr>
+  
+<div id="listing-container" class="container-fluid">
+  <div class="col-md-10 mx-auto my-auto">
+    <h2>Most recent listings</h2>
+    <div id="recent-listings" class="col-md-3 card" *ngFor="let l of recentListings">
+      <img class="card-img-top" id="recent-result-image" src="{{ l.image }}">
+      <div class="card-body">
+        <h4 class="card-title"><a [routerLink]="[l._id]">{{ l.title }}</a></h4>
+        <li class="card-text">{{ l.price | currency:'USD':symbol }}</li>
+        <li class="card-text">{{ l.roomType }}</li>
+      </div>
+    </div>
+    <hr>
+    <h2>Search results</h2>
+    <div id="search-results" class="col-md-3 card" *ngFor="let result of searchListings">
+      <img class="card-img-top" id="search-result-image" src="{{ result.image }}">
+      <div class="card-body">
+        <h4 class="card-title"><a [routerLink]="[result._id]">{{ result.title }}</a></h4>
+        <li class="card-text">{{ result.price | currency:'USD':symbol }}</li>
+        <li class="card-text">{{ result.roomType }}</li>
+      </div>
+    </div>
+  </div>
+</div>

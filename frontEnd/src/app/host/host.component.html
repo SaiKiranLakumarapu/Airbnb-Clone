@@ -1,0 +1,72 @@
+<div id="nav-container" class="container-fluid">
+  <nav id="host-top-nav" class="navbar navbar-toggleable navbar-light">
+    <div class="justify-content-between collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="row">
+        <div id="header-img-div" class="col my-auto">
+          <a class="navbar-brand" href="#">
+            <img class="img-fluid" id="header-logo" alt="Brand" src="assets/airbnbLogo.png">
+          </a>
+        </div>
+        <div class="col my-auto" id="nav-form-search">
+          <form id="top-search-form" class="align-middle form-inline">
+            <div class="form-row">
+              <input id="search-field" type="text" class="form-control" name="home-search" placeholder="Search">
+              <button id="listing-search" class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" [routerLink]="['/account', currentUser._id]">Your Account</a>
+          <a class="nav-item nav-link" [routerLink]="['/listings']">Listings</a>
+          <a class="nav-item nav-link">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <hr>
+</div>
+
+<div id="host-container" class="container container-fluid">
+  <app-listing-form *ngIf="validLoc"></app-listing-form>
+  <div *ngIf="!validLoc" class="row">
+  <div class="col-md-3">
+    <h3 class="text-right">Add Listing</h3>
+  </div>
+  <div class="col-md-9">
+    <div id="location-card" class="card">
+        <h5 class="card-header bg-grey">Required information</h5>
+        <div class="card-body">
+          <form id="loc-form" #locationForm="ngForm" (submit)="validateLocation(); toHost()">
+            <div class="form-group row">
+              <label for="city" class="text-right col-sm-3 col-form-label">Where is your room located?</label>
+              <input type="text" class="form-control col-sm-9" name="city" required minlength="2" [(ngModel)]="nLoc.city" #city="ngModel"
+                placeholder="Enter a city">
+            </div>
+            <span class="text-info" *ngIf='!city.valid && city.touched'>City is required and must be at least 2 characters</span>       
+            
+            <div class="form-group row">
+                <select class="form-control col-sm offset-sm-3" name="usState" required [(ngModel)]="nLoc.usState" #usState="ngModel">
+                  <!-- <option selected="selected">Select a state</option> -->
+                  <option *ngFor="let eachState of allStates" value="{{ eachState }}">{{ eachState }}</option>
+                </select>
+            </div>
+            <span class="text-info" *ngIf='!usState.valid && usState.touched'>A state or territory is required</span>
+
+            <div class="form-group row">
+              <input type="text" class="form-control col-sm offset-sm-3" name="zipCode" required minlength="5" [(ngModel)]="nLoc.zipCode" #zipCode="ngModel" placeholder="Enter a zip code">
+            </div>
+            <span class="text-info" *ngIf='!zipCode.valid && zipCode.touched'>Zip code is required and must be at least 5 characters</span>
+       
+            <div class="form-group">
+              <div class="col-sm">
+                <button type="submit" id="location-submit" tabindex="8" class="btn btn-outline-primary float-right" [disabled]="!locationForm.valid">Add location</button>
+              </div>
+            </div>
+          </form>
+        <div>
+      </div>
+    </div>
+  </div>
+</div>

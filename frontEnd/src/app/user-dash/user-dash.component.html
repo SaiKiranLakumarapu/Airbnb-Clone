@@ -1,0 +1,52 @@
+<div id="nav-container" class="container-fluid">
+  <nav id="top-nav" class="navbar navbar-toggleable navbar-light">
+    <div class="justify-content-between collapse navbar-collapse">
+      <div class="row">
+        <div id="header-img-div" class="col my-auto">
+          <a class="navbar-brand" href="#">
+            <img class="img-fluid" id="header-logo" alt="Brand" src="assets/airbnbLogo.png">
+          </a>
+        </div>
+        <div class="col my-auto" id="nav-form-search">
+          <form id="top-search-form" class="align-middle form-inline">
+            <div class="form-row">
+              <input id="search-field" type="text" class="form-control" name="home-search" placeholder="Search">
+              <button id="listing-search" class="btn btn-outline-success" type="submit" style="display: none;">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="navbar-nav">
+          <a class="nav-link" [routerLink]="['/host']">Become a Host</a>
+          <a class="nav-link" [routerLink]="['/listings']">Listings</a>
+          <a class="nav-link" [routerLink]="" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <hr>
+  </div>
+  <div id="user-dash-container" class="container container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <nav id="inside-nav" class="navbar navbar-toggleable navbar-light">
+          <ul class="nav flex-column">
+              <a class="nav-item nav-link" [routerLink]="" (click)="switchProfile()" id="toggle-profile">Profile Settings</a>
+              <a class="nav-item nav-link" [routerLink]="" (click)="switchListing()" id="toggle-listings">Your Listings</a>
+              <a class="nav-item nav-link" [routerLink]="" (click)="switchMessages()" id="toggle-messages">Your Messages</a>
+              <a class="nav-item nav-link" [routerLink]="" (click)="switchReserves()" id="toggle-reserves">Your Reservations</a>
+          </ul>
+        </nav>
+        <a>
+          <button id="profile-button" type="button" [routerLink]="['/profile']" class="btn btn-outline-primary btn-lg btn-block">View Profile</button>
+        </a>
+      </div>
+      <div class="col-md">
+        <app-dash-listings *ngIf="viewListings"></app-dash-listings>
+        <app-dash-messages *ngIf="viewMessages"></app-dash-messages>
+        <app-dash-profile *ngIf="viewProfile"></app-dash-profile>
+        <app-dash-reserves *ngIf="viewReserves"></app-dash-reserves>
+      </div>
+    </div>
+  </div>
